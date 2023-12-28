@@ -60,4 +60,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: "ppm-viewer-windows"
-          path: build/bin/ppm-viewer.exe
+          path: build/ppm-viewer.exe
