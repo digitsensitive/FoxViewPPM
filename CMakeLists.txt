@@ -6,7 +6,10 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Set the project version
-include(cmake/version.cmake)
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 1)
+set(VERSION_REVISION 0)
+string(TIMESTAMP VERSION_YEAR "%Y")
 
 # Set the project name with the corresponding version
 project(ppm-viewer VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_REVISION} LANGUAGES C)
