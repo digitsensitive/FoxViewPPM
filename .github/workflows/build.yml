@@ -1,4 +1,5 @@
 name: Build
+
 on:
   push:
     branches: ["main"]
@@ -21,7 +22,7 @@ jobs:
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
         os: [windows-latest]
-        build_type: [Debug]
+        build_type: MinSizeRel
         c_compiler: [gcc]
         include:
           - os: windows-latest
