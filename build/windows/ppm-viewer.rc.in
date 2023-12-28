@@ -15,10 +15,8 @@
 BEGIN
 	BLOCK "StringFileInfo"
 	BEGIN
-		/*
-			U.S. English, multilingual
-			https://learn.microsoft.com/en-us/windows/win32/menurc/versioninfo-resource
-		*/
+		/* U.S. English, multilingual */
+		/* https://learn.microsoft.com/en-us/windows/win32/menurc/versioninfo-resource */
 		BLOCK "040904E4" 
 		BEGIN
 			VALUE "CompanyName", "digitsensitive"
@@ -33,14 +31,6 @@ BEGIN
 	END
 	BLOCK "VarFileInfo"
 	BEGIN
-	    /*
-			The following line should only be modified for localized versions.
-        	It consists of any number of WORD,WORD pairs, with each pair 
-         	describing a language,codepage combination supported by the file.
-			                                                      
-         	For example, a file might have values "0x409,1252" indicating that it
-         	supports English language (0x409) in the Windows ANSI codepage (1252).
-		*/
 		VALUE "Translation", 0x409, 1252
 	END
 END
