@@ -1,6 +1,6 @@
 # PPM Viewer
 
-An Open Source PPM-File Viewer written in C and SDL.
+An Open Source PPM-File Viewer written in `C` and `SDL`.
 
 ## Roadmap
 
