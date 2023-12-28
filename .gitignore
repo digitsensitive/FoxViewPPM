@@ -1,1 +1,4 @@
-build
+# Ignore everything in the "build" folder, except selected data
+# marked with the ! (negation) symbol
+build/*
+!build/windows
