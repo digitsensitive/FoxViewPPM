@@ -1,28 +1,50 @@
 #include <stdio.h>
 
-#include "SDL3/SDL.h"
+#include "ppm.h"
+#include "sdl_engine.h"
 
 int main(int argc, char* argv[]) {
-  SDL_Init(SDL_INIT_VIDEO);
-
-  // Create an application window with the following settings:
-  SDL_Window* window = SDL_CreateWindow("An SDL2 window",  // window title
-                                        640,               // width, in pixels
-                                        480,               // height, in pixels
-                                        SDL_WINDOW_OPENGL  // flags - see below
-  );
-
-  // Check that the window was successfully created
-  if (window == NULL) {
-    // In the case that the window could not be made...
-    printf("Could not create window: %s\n", SDL_GetError());
-    return 1;
+  if (argc != 2) {
+    printf("Usage: <ppm-viewer> <image.ppm>\n");
+    return -1;
   }
 
-  SDL_Delay(10000);
+  int is_ppm_file_valid = read_ppm_file(argv[1]);
 
-  SDL_DestroyWindow(window);
+  if (is_ppm_file_valid) {
+    printf("The *.ppm file is invalid.\n");
+    return -1;
+  }
 
-  SDL_Quit();
+  int result = initialize_engine();
+
+  if (result != 0) {
+    return result;
+  }
+
+  int done = 0;
+  SDL_Event event;
+
+  while (!done) {
+    while (SDL_PollEvent(&event)) {
+      switch (event.type) {
+        case SDL_EVENT_QUIT:
+          done = 1;
+          break;
+        case SDL_EVENT_KEY_DOWN:
+          if (event.key.keysym.sym == SDLK_ESCAPE) {
+            done = 1;
+          }
+          break;
+        default:
+          break;
+      }
+    }
+
+    run();
+  }
+
+  terminate_engine();
+
   return 0;
 }

@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    "sdl_engine.h": "c",
+    "sdl_renderer.h": "c",
+    "sdl.h": "c",
+    "stdlib.h": "c",
+    "stdio.h": "c",
+    "string": "c",
+    "format": "c",
+    "ppm.h": "c",
+    "chrono": "c",
+    "functional": "c"
+  }
+}

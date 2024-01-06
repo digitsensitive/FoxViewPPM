@@ -33,11 +33,15 @@ add_subdirectory(vendors/sdl EXCLUDE_FROM_ALL)
 if (WIN32)
     configure_file("${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc.in" "${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc")
     set(PPM_VIEWER_SRC ${TIC80_SRC} "${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc")
-    add_executable(${PROJECT_NAME} WIN32 src/main.c ${PPM_VIEWER_SRC})
+    add_executable(${PROJECT_NAME} WIN32
+        src/main.c
+        src/ppm.c
+        src/sdl_engine.c
+        src/sdl_renderer.c
+        ${PPM_VIEWER_SRC})
 endif()
 
-# target_include_directories with ${SDL2_INCLUDE_DIRS} is not needed anymore
-# If I have an include folder in my project, I should use it again
+target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 # Link to the actual SDL3 library.
 # PRIVATE since it is for internal use only, others don't need to worry about it

@@ -23,7 +23,7 @@ BEGIN
 			VALUE "FileDescription", "PPM-File Viewer"
 			VALUE "FileVersion", "0.1.0.0"
 			VALUE "InternalName", "ppm-viewer"
-			VALUE "LegalCopyright", "https://github.com/digitsensitive/ppm-viewer (C) 2023-2023"
+			VALUE "LegalCopyright", "https://github.com/digitsensitive/ppm-viewer (C) 2023-2024"
 			VALUE "OriginalFilename", "ppm-viewer.exe"
 			VALUE "ProductName", "PPM-File Viewer"
 			VALUE "ProductVersion", "0.1.0.0"

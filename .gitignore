@@ -2,3 +2,4 @@
 # marked with the ! (negation) symbol
 build/*
 !build/windows
+data/*
