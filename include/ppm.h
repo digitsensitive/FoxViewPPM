@@ -7,17 +7,17 @@
 #define MAX_MAXVAL 65536
 
 typedef struct {
-  const unsigned char r;  // Red
-  const unsigned char g;  // Green
-  const unsigned char b;  // Blue
+  unsigned char r;  // Red
+  unsigned char g;  // Green
+  unsigned char b;  // Blue
 } Pixel;
 
 typedef struct {
   struct {
-    char file_type[3];         // "Magic number"(P6 raw format, P3 plain format)
-    const unsigned int width;  // Image width, ASCII decimal
-    const unsigned int height;  // Image height, ASCII decimal
-    const unsigned int maxval;  // Maximum color value (Maxval), ASCII decimal
+    char file_type[3];    // "Magic number"(P6 raw format, P3 plain format)
+    unsigned int width;   // Image width, ASCII decimal
+    unsigned int height;  // Image height, ASCII decimal
+    unsigned int maxval;  // Maximum color value (Maxval), ASCII decimal
   } PPMHeader;
 
   struct {

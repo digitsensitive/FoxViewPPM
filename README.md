@@ -2,15 +2,9 @@
 
 An Open Source PPM-File Viewer written in `C` and `SDL`.
 
-## Roadmap
+## Features
 
-The goal is to write a clean and short code. No overhead!
-
-1. Basic SDL Setup with CMake to create window
-2. Study PPM File Format
-3. Study how to open ppm Format with specific program (drag-and-drop?)
-4. Add read_ppm_file() function
-5. Add display_ppm_file() function
+- Supports PBM-Files (P1) and PPM-Files (P3)
 
 ## How to build
 

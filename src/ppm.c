@@ -12,7 +12,7 @@ int read_ppm_file(const char* ppm_file_path) {
     return 1;
   }
 
-  /* PPM Header */
+  /* ------------------------- PPM Header ------------------------- */
   // File Type
   fscanf(ppm_file, "%2s", ppm_data.PPMHeader.file_type);
   ppm_data.PPMHeader.file_type[2] = '\0';  // Null-terminate the string
@@ -35,16 +35,20 @@ int read_ppm_file(const char* ppm_file_path) {
   }
 
   // Maximum color value
-  int result_maxval = fscanf(ppm_file, "%d", &ppm_data.PPMHeader.maxval);
+  ppm_data.PPMHeader.maxval = 0;  // Default value of maxval is 0
 
-  if (result_maxval != 1 || ppm_data.PPMHeader.maxval >= 65536 ||
-      ppm_data.PPMHeader.maxval <= 0) {
-    printf("Invalid maxval value (must be integer and > 0 and < 65536)!\n");
-    return 1;
+  if (ppm_data.PPMHeader.file_type[1] == '3') {
+    int result_maxval = fscanf(ppm_file, "%d", &ppm_data.PPMHeader.maxval);
+
+    if (result_maxval != 1 || ppm_data.PPMHeader.maxval >= 65536 ||
+        ppm_data.PPMHeader.maxval <= 0) {
+      printf("Invalid maxval value (must be integer and > 0 and < 65536)!\n");
+      return 1;
+    }
   }
 
-  /* PPM Body */
-  // Allocate memory for 2D Pixel-Data-Matrix
+  /* ------------------------- PPM Body ------------------------- */
+  // Allocate memory for pixel data
   ppm_data.PPMBody.pixel_data = (Pixel*)malloc(
       ppm_data.PPMHeader.width * ppm_data.PPMHeader.height * sizeof(Pixel));
 
@@ -57,14 +61,41 @@ int read_ppm_file(const char* ppm_file_path) {
     for (int x = 0; x < ppm_data.PPMHeader.width; x++) {
       int index = y * ppm_data.PPMHeader.width + x;
 
-      int result_pixel =
-          fscanf(ppm_file, "%d %d %d", &ppm_data.PPMBody.pixel_data[index].r,
-                 &ppm_data.PPMBody.pixel_data[index].g,
-                 &ppm_data.PPMBody.pixel_data[index].b);
+      switch (ppm_data.PPMHeader.file_type[1]) {
+        case '1':
+          // Get current pixel value, ASCII "0" or "1"
+          const unsigned char value;
+          int result_pixel_p1 = fscanf(ppm_file, "%d", &value);
 
-      if (result_pixel != 3) {
-        printf("Invalid pixel data (must be integers)!\n");
-        return 1;
+          if (result_pixel_p1 > 1 || result_pixel_p1 < 0) {
+            printf("P1 Body: Invalid pixel data (must be integers)!\n");
+            return 1;
+          }
+
+          // Traditionally "0" refers to white while "1" refers to black.
+          const unsigned char value_rgb = value == 1 ? 0 : 255;
+
+          // Apply the pixel value to the RGB pixel values
+          ppm_data.PPMBody.pixel_data[index].r =
+              ppm_data.PPMBody.pixel_data[index].g =
+                  ppm_data.PPMBody.pixel_data[index].b = value_rgb;
+
+          break;
+        case '3':
+          int result_pixel_p3 = fscanf(ppm_file, "%d %d %d",
+                                       &ppm_data.PPMBody.pixel_data[index].r,
+                                       &ppm_data.PPMBody.pixel_data[index].g,
+                                       &ppm_data.PPMBody.pixel_data[index].b);
+
+          if (result_pixel_p3 != 3) {
+            printf("P3 Body: Invalid pixel data (must be integers)!\n");
+            return 1;
+          }
+
+          break;
+        default:
+          // default
+          break;
       }
     }
   }

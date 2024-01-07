@@ -9,6 +9,7 @@
     "format": "c",
     "ppm.h": "c",
     "chrono": "c",
-    "functional": "c"
+    "functional": "c",
+    "variant": "c"
   }
 }
