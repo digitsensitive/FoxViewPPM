@@ -1,6 +1,8 @@
 # PPM Viewer
 
-An Open Source PPM-File Viewer written in `C` and `SDL`.
+PPM Viewer is an Open Source image viewer written in `C` and `SDL3`.
+The program parses the image data (header and body) and displays the content
+using the SDL3 library.
 
 ## Features
 
@@ -31,6 +33,6 @@ git submodule add https://github.com/libsdl-org/SDL.git vendors/sdl
 ## References
 
 - [ASCII Chart](https://en.cppreference.com/w/cpp/language/ascii)
-- [PPM Format Specification](https://netpbm.sourceforge.net/doc/ppm.html)
 - [PBM, PGM, and PPM files The simple image file formats](http://utk.claranguyen.me/guide.php?id=ppm)
+- [PPM Format Specification](https://netpbm.sourceforge.net/doc/ppm.html)
 - [PPM / PGM / PBM image files by Paul Bourke](https://paulbourke.net/dataformats/ppm)
