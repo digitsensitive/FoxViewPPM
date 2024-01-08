@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[]) {
   if (argc != 2) {
-    printf("Usage: <ppm-viewer> <image.ppm>\n");
+    printf("Usage: <ppm-viewer> <image.extension>\n");
     return -1;
   }
 

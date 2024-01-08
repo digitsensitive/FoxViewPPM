@@ -10,6 +10,14 @@
     "ppm.h": "c",
     "chrono": "c",
     "functional": "c",
-    "variant": "c"
+    "variant": "c",
+    "charconv": "c",
+    "optional": "c",
+    "ratio": "c",
+    "system_error": "c",
+    "array": "c",
+    "tuple": "c",
+    "type_traits": "c",
+    "utility": "c"
   }
 }

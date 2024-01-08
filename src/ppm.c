@@ -19,6 +19,7 @@ int read_ppm_file(const char* ppm_file_path) {
 
   if (ppm_data.PPMHeader.file_type[0] != 'P' ||
       (ppm_data.PPMHeader.file_type[1] != '1' &&
+       ppm_data.PPMHeader.file_type[1] != '2' &&
        ppm_data.PPMHeader.file_type[1] != '3')) {
     printf("Invalid PPM file format!\n");
     fclose(ppm_file);
@@ -37,7 +38,8 @@ int read_ppm_file(const char* ppm_file_path) {
   // Maximum color value
   ppm_data.PPMHeader.maxval = 0;  // Default value of maxval is 0
 
-  if (ppm_data.PPMHeader.file_type[1] == '3') {
+  if (ppm_data.PPMHeader.file_type[1] == '2' ||
+      ppm_data.PPMHeader.file_type[1] == '3') {
     int result_maxval = fscanf(ppm_file, "%d", &ppm_data.PPMHeader.maxval);
 
     if (result_maxval != 1 || ppm_data.PPMHeader.maxval >= 65536 ||
@@ -63,9 +65,10 @@ int read_ppm_file(const char* ppm_file_path) {
 
       switch (ppm_data.PPMHeader.file_type[1]) {
         case '1':
+          /* ----- Portable BitMap, PBM, ASCII -----*/
           // Get current pixel value, ASCII "0" or "1"
-          const unsigned char value;
-          int result_pixel_p1 = fscanf(ppm_file, "%d", &value);
+          const unsigned char value_p1;
+          int result_pixel_p1 = fscanf(ppm_file, "%d", &value_p1);
 
           if (result_pixel_p1 > 1 || result_pixel_p1 < 0) {
             printf("P1 Body: Invalid pixel data (must be integers)!\n");
@@ -73,7 +76,7 @@ int read_ppm_file(const char* ppm_file_path) {
           }
 
           // Traditionally "0" refers to white while "1" refers to black.
-          const unsigned char value_rgb = value == 1 ? 0 : 255;
+          const unsigned char value_rgb = value_p1 == 1 ? 0 : 255;
 
           // Apply the pixel value to the RGB pixel values
           ppm_data.PPMBody.pixel_data[index].r =
@@ -81,7 +84,24 @@ int read_ppm_file(const char* ppm_file_path) {
                   ppm_data.PPMBody.pixel_data[index].b = value_rgb;
 
           break;
+        case '2':
+          /* ----- Portable GrayMap, PGM, ASCII -----*/
+          const unsigned char value_p2;
+          int result_pixel_p2 = fscanf(ppm_file, "%d", &value_p2);
+
+          if (result_pixel_p2 != 1) {
+            printf("P2 Body: Invalid pixel data (must be integers)!\n");
+            return 1;
+          }
+
+          // Apply the pixel value to the RGB pixel values
+          ppm_data.PPMBody.pixel_data[index].r =
+              ppm_data.PPMBody.pixel_data[index].g =
+                  ppm_data.PPMBody.pixel_data[index].b = value_p2;
+
+          break;
         case '3':
+          /* ----- Portable PixMap, PPM, ASCII -----*/
           int result_pixel_p3 = fscanf(ppm_file, "%d %d %d",
                                        &ppm_data.PPMBody.pixel_data[index].r,
                                        &ppm_data.PPMBody.pixel_data[index].g,

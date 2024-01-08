@@ -4,7 +4,17 @@ An Open Source PPM-File Viewer written in `C` and `SDL`.
 
 ## Features
 
-- Supports PBM-Files (P1) and PPM-Files (P3)
+- Supports P1-P3 Files
+
+| Magic Number | File Type             | Extension | Type    |
+| ------------ | --------------------- | --------- | ------- |
+| P1           | Portable BitMap       | PBM       | ASCII   |
+| P2           | Portable GrayMap      | PGM       | ASCII   |
+| P3           | Portable PixMap       | PPM       | ASCII   |
+| P4           | Portable BitMap       | PBM       | Binary  |
+| P5           | Portable GrayMap      | PGM       | Binary  |
+| P6           | Portable PixMap       | PPM       | Binary  |
+| P7           | Portable ArbitraryMap | PAM       | Unknown |
 
 ## How to build
 
