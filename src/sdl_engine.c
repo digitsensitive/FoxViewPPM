@@ -3,9 +3,9 @@
 // Declare instance of struct SDLRenderer
 SDLRenderer renderer;
 
-int initialize_engine() {
-  int result = initialize_renderer(&renderer, "My Engine", get_width(),
-                                   get_height(), SDL_WINDOW_OPENGL);
+int initialize_engine(const char* title) {
+  int result = initialize_renderer(&renderer, title, get_width(), get_height(),
+                                   SDL_WINDOW_OPENGL);
 
   if (result != 0) {
     printf("Error initializing renderer: %s\n", SDL_GetError());
