@@ -77,7 +77,7 @@ int read_ppm_file(const char* ppm_file_path) {
           const unsigned char value_p1;
           int result_pixel_p1_p4 = fscanf(ppm_file, "%d", &value_p1);
 
-          if (result_pixel_p1_p4 > 1 || result_pixel_p1 < 0) {
+          if (result_pixel_p1_p4 > 1 || result_pixel_p1_p4 < 0) {
             printf("P1 Body: Invalid pixel data (must be integers)!\n");
             return 1;
           }

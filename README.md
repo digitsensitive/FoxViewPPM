@@ -6,7 +6,7 @@ using the SDL3 library.
 
 ## Features
 
-- Supports P1-P3 Files
+- Supports P1-P6 Files
 
 | Magic Number | File Type             | Extension | Type    |
 | ------------ | --------------------- | --------- | ------- |
