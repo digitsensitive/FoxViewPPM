@@ -2,4 +2,5 @@
 # marked with the ! (negation) symbol
 build/*
 !build/windows
+!build/macosx
 data/*

@@ -39,7 +39,27 @@ if (WIN32)
         src/sdl_engine.c
         src/sdl_renderer.c
         ${PPM_VIEWER_SRC})
-endif()
+elseif(APPLE)
+    set(MACOSX_BUNDLE_ICON_FILE "${PROJECT_SOURCE_DIR}/build/macosx/ppm-viewer.icns")
+    set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.digitsensitive.ppmviewer")
+    set(MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/build/macosx/ppmviewer.plist.in")
+    
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE
+        src/main.c
+        src/ppm.c
+        src/sdl_engine.c
+        src/sdl_renderer.c)
+    
+    # Set icon file for the bundle
+    set_source_files_properties(${PROJECT_SOURCE_DIR}/build/macosx/ppm-viewer.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/build/macosx/ppm-viewer.icns)
+else()
+     add_executable(${PROJECT_NAME}
+        src/main.c
+        src/ppm.c
+        src/sdl_engine.c
+        src/sdl_renderer.c)
+ endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
