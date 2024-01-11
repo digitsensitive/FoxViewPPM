@@ -39,12 +39,6 @@ if (WIN32)
         src/sdl_engine.c
         src/sdl_renderer.c
         ${PPM_VIEWER_SRC})
-else()
-    add_executable(${PROJECT_NAME}
-        src/main.c
-        src/ppm.c
-        src/sdl_engine.c
-        src/sdl_renderer.c)
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
