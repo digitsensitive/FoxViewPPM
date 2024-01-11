@@ -18,12 +18,12 @@ typedef struct {
     unsigned int width;   // Image width, ASCII decimal
     unsigned int height;  // Image height, ASCII decimal
     unsigned int maxval;  // Maximum color value (Maxval), ASCII decimal
-  } PPMHeader;
+  } Header;
 
   struct {
     Pixel* pixel_data;  // Image pixel data
-  } PPMBody;
-} PPMData;
+  } Body;
+} PPMFile;
 
 int read_ppm_file(const char* ppm_file_path);
 
