@@ -5,7 +5,7 @@ PPMData ppm_data;
 int read_ppm_file(const char* ppm_file_path) {
   FILE* ppm_file;
 
-  ppm_file = fopen(ppm_file_path, "r");
+  ppm_file = fopen(ppm_file_path, "rb");
 
   if (ppm_file == NULL) {
     printf("Memory allocation for FILE pointer failed!\n");
@@ -20,7 +20,10 @@ int read_ppm_file(const char* ppm_file_path) {
   if (ppm_data.PPMHeader.file_type[0] != 'P' ||
       (ppm_data.PPMHeader.file_type[1] != '1' &&
        ppm_data.PPMHeader.file_type[1] != '2' &&
-       ppm_data.PPMHeader.file_type[1] != '3')) {
+       ppm_data.PPMHeader.file_type[1] != '3' &&
+       ppm_data.PPMHeader.file_type[1] != '4' &&
+       ppm_data.PPMHeader.file_type[1] != '5' &&
+       ppm_data.PPMHeader.file_type[1] != '6')) {
     printf("Invalid PPM file format!\n");
     fclose(ppm_file);
     return 1;
@@ -39,7 +42,9 @@ int read_ppm_file(const char* ppm_file_path) {
   ppm_data.PPMHeader.maxval = 0;  // Default value of maxval is 0
 
   if (ppm_data.PPMHeader.file_type[1] == '2' ||
-      ppm_data.PPMHeader.file_type[1] == '3') {
+      ppm_data.PPMHeader.file_type[1] == '3' ||
+      ppm_data.PPMHeader.file_type[1] == '5' ||
+      ppm_data.PPMHeader.file_type[1] == '6') {
     int result_maxval = fscanf(ppm_file, "%d", &ppm_data.PPMHeader.maxval);
 
     if (result_maxval != 1 || ppm_data.PPMHeader.maxval >= 65536 ||
@@ -66,11 +71,13 @@ int read_ppm_file(const char* ppm_file_path) {
       switch (ppm_data.PPMHeader.file_type[1]) {
         case '1':
           /* ----- Portable BitMap, PBM, ASCII -----*/
+        case '4':
+          /* ----- Portable BitMap, PBM, Binary -----*/
           // Get current pixel value, ASCII "0" or "1"
           const unsigned char value_p1;
-          int result_pixel_p1 = fscanf(ppm_file, "%d", &value_p1);
+          int result_pixel_p1_p4 = fscanf(ppm_file, "%d", &value_p1);
 
-          if (result_pixel_p1 > 1 || result_pixel_p1 < 0) {
+          if (result_pixel_p1_p4 > 1 || result_pixel_p1 < 0) {
             printf("P1 Body: Invalid pixel data (must be integers)!\n");
             return 1;
           }
@@ -86,10 +93,12 @@ int read_ppm_file(const char* ppm_file_path) {
           break;
         case '2':
           /* ----- Portable GrayMap, PGM, ASCII -----*/
+        case '5':
+          /* ----- Portable GrayMap, PGM, Binary -----*/
           const unsigned char value_p2;
-          int result_pixel_p2 = fscanf(ppm_file, "%d", &value_p2);
+          int result_pixel_p2_p5 = fscanf(ppm_file, "%d", &value_p2);
 
-          if (result_pixel_p2 != 1) {
+          if (result_pixel_p2_p5 != 1) {
             printf("P2 Body: Invalid pixel data (must be integers)!\n");
             return 1;
           }
@@ -109,6 +118,15 @@ int read_ppm_file(const char* ppm_file_path) {
 
           if (result_pixel_p3 != 3) {
             printf("P3 Body: Invalid pixel data (must be integers)!\n");
+            return 1;
+          }
+
+          break;
+        case '6':
+          /* ----- Portable PixMap, PPM, Binary -----*/
+          if (fread(&ppm_data.PPMBody.pixel_data[index], sizeof(Pixel), 1,
+                    ppm_file) != 1) {
+            printf("P6 Body: Error reading pixel data!\n");
             return 1;
           }
 
