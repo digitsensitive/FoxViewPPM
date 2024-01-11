@@ -32,13 +32,19 @@ add_subdirectory(vendors/sdl EXCLUDE_FROM_ALL)
 # Add our executable to our project
 if (WIN32)
     configure_file("${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc.in" "${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc")
-    set(PPM_VIEWER_SRC ${TIC80_SRC} "${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc")
+    set(PPM_VIEWER_SRC "${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc")
     add_executable(${PROJECT_NAME} WIN32
         src/main.c
         src/ppm.c
         src/sdl_engine.c
         src/sdl_renderer.c
         ${PPM_VIEWER_SRC})
+else()
+    add_executable(${PROJECT_NAME}
+        src/main.c
+        src/ppm.c
+        src/sdl_engine.c
+        src/sdl_renderer.c)
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
