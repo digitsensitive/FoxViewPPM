@@ -1,8 +1,8 @@
 # PPM Viewer
 
-PPM Viewer is an Open Source image viewer written in `C` and `SDL3`.
+PPM Viewer is an Open Source image viewer written in `C` and `SDL2`.
 The program parses the image data (header and body) and displays the content
-using the SDL3 library.
+using the SDL2 library.
 
 ## Features
 
@@ -21,6 +21,7 @@ using the SDL3 library.
 ## How to build
 
 ```bash
+cd build
 cmake --build . --config Release
 ```
 
