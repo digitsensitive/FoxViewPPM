@@ -70,7 +70,6 @@ int read_ppm_file(const char* ppm_file_path) {
       unsigned int index = y * ppm_data.Header.width + x;
       const unsigned char value_p1;
       const unsigned char value_p2;
-      int result_pixel_p3;
 
       switch (ppm_data.Header.file_type[1]) {
         case '1':
@@ -107,7 +106,7 @@ int read_ppm_file(const char* ppm_file_path) {
           break;
         case '3': {
           /* ----- Portable PixMap, PPM, ASCII -----*/
-          result_pixel_p3 =
+          int result_pixel_p3 =
               fscanf(ppm_file, "%d %d %d", &ppm_data.Body.pixel_data[index].r,
                      &ppm_data.Body.pixel_data[index].g,
                      &ppm_data.Body.pixel_data[index].b);
