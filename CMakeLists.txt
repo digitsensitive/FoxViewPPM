@@ -12,7 +12,7 @@ set(VERSION_REVISION 0)
 string(TIMESTAMP VERSION_YEAR "%Y")
 
 # Set the project name with the corresponding version
-project(ppm-viewer VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_REVISION} LANGUAGES C)
+project(FoxViewPPM VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_REVISION} LANGUAGES C)
 message("Building for target: ${CMAKE_SYSTEM_NAME}")
 
 ################################
@@ -31,18 +31,18 @@ add_subdirectory(vendors/sdl EXCLUDE_FROM_ALL)
 
 # Add our executable to our project
 if (WIN32)
-    configure_file("${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc.in" "${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc")
-    set(PPM_VIEWER_SRC "${PROJECT_SOURCE_DIR}/build/windows/ppm-viewer.rc")
+    configure_file("${PROJECT_SOURCE_DIR}/build/windows/FoxViewPPM.rc.in" "${PROJECT_SOURCE_DIR}/build/windows/FoxViewPPM.rc")
+    set(FoxViewPPM_SRC "${PROJECT_SOURCE_DIR}/build/windows/FoxViewPPM.rc")
     add_executable(${PROJECT_NAME} WIN32
         src/main.c
         src/ppm.c
         src/sdl_engine.c
         src/sdl_renderer.c
-        ${PPM_VIEWER_SRC})
+        ${FoxViewPPM_SRC})
 elseif(APPLE)
-    set(MACOSX_BUNDLE_ICON_FILE "${PROJECT_SOURCE_DIR}/build/macosx/ppm-viewer.icns")
-    set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.digitsensitive.ppmviewer")
-    set(MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/build/macosx/ppmviewer.plist.in")
+    set(MACOSX_BUNDLE_ICON_FILE "${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.icns")
+    set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.digitsensitive.foxviewppm")
+    set(MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.plist.in")
     
     add_executable(${PROJECT_NAME} MACOSX_BUNDLE
         src/main.c
@@ -51,8 +51,8 @@ elseif(APPLE)
         src/sdl_renderer.c)
     
     # Set icon file for the bundle
-    set_source_files_properties(${PROJECT_SOURCE_DIR}/build/macosx/ppm-viewer.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-    target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/build/macosx/ppm-viewer.icns)
+    set_source_files_properties(${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.icns)
 else()
      add_executable(${PROJECT_NAME}
         src/main.c

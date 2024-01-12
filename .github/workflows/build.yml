@@ -44,8 +44,8 @@ jobs:
       - name: Deploy for Windows
         uses: actions/upload-artifact@v3
         with:
-          name: "ppm-viewer-windows"
-          path: build/ppm-viewer.exe
+          name: "FoxViewPPM-windows"
+          path: build/FoxViewPPM.exe
 
   build-macos:
     runs-on: macos-latest
@@ -79,6 +79,6 @@ jobs:
       - name: Deploy for macOS
         uses: actions/upload-artifact@v3
         with:
-          name: "ppm-viewer-macos"
-          path: build/ppm-viewer
+          name: "FoxViewPPM-macos"
+          path: build/FoxViewPPM
 # Optionally, you may want to add a matrix entry for Linux builds as well.

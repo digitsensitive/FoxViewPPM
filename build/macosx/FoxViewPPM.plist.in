@@ -5,17 +5,17 @@
   <key>CFBundleDevelopmentRegion</key>
   <string>en</string>
   <key>CFBundleDisplayName</key>
-  <string>PPM-File Viewer</string>
+  <string>FoxViewPPM</string>
   <key>CFBundleExecutable</key>
-  <string>ppm-viewer</string>
+  <string>FoxViewPPM</string>
   <key>CFBundleIconFile</key>
-  <string>ppm-viewer.icns</string>
+  <string>FoxViewPPM.icns</string>
   <key>CFBundleIdentifier</key>
-  <string>com.digitsensitive.ppmviewer</string>
+  <string>com.digitsensitive.foxviewppm</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>1.0</string>
   <key>CFBundleName</key>
-  <string>PPM-File Viewer</string>
+  <string>FoxViewPPM</string>
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
@@ -23,7 +23,7 @@
   <key>CFBundleVersion</key>
   <string>@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_REVISION@</string>
   <key>NSHumanReadableCopyright</key>
-  <string>https://github.com/digitsensitive/ppm-viewer (C) 2023-@VERSION_YEAR@</string>
+  <string>https://github.com/digitsensitive/FoxViewPPM (C) 2023-@VERSION_YEAR@</string>
   <key>NSHighResolutionCapable</key>
   <true/>
 </dict>

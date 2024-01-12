@@ -20,12 +20,12 @@ BEGIN
 		BLOCK "040904E4" 
 		BEGIN
 			VALUE "CompanyName", "digitsensitive"
-			VALUE "FileDescription", "PPM-File Viewer"
+			VALUE "FileDescription", "Image viewer for PPM, PBM and PGM files"
 			VALUE "FileVersion", "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_REVISION@.0"
-			VALUE "InternalName", "ppm-viewer"
-			VALUE "LegalCopyright", "https://github.com/digitsensitive/ppm-viewer (C) 2023-@VERSION_YEAR@"
-			VALUE "OriginalFilename", "ppm-viewer.exe"
-			VALUE "ProductName", "PPM-File Viewer"
+			VALUE "InternalName", "FoxViewPPM"
+			VALUE "LegalCopyright", "https://github.com/digitsensitive/FoxViewPPM (C) 2023-@VERSION_YEAR@"
+			VALUE "OriginalFilename", "FoxViewPPM.exe"
+			VALUE "ProductName", "FoxViewPPM"
 			VALUE "ProductVersion", "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_REVISION@.0"
 		END
 	END
