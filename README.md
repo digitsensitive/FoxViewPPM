@@ -12,11 +12,13 @@ displays the content using the SDL2 library.
 
 ## How to build
 
-Initialize or update submodules:
+Initialize submodules:
 
 ```bash
 git submodule update --init --recursive
 ```
+
+Build Release:
 
 ```bash
 cd build
