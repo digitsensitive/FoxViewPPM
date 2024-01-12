@@ -76,7 +76,7 @@ int read_ppm_file(const char* ppm_file_path) {
           /* ----- Portable BitMap, PBM, Binary -----*/
           // Get current pixel value, ASCII "0" or "1"
           const unsigned char value_p1;
-          int result_pixel_p1_p4 = fscanf(ppm_file, "%d", &value_p1);
+          int result_pixel_p1_p4 = fscanf(ppm_file, "%s", &value_p1);
 
           if (result_pixel_p1_p4 > 1 || result_pixel_p1_p4 < 0) {
             printf("P1 Body: Invalid pixel data (must be integers)!\n");
@@ -94,7 +94,7 @@ int read_ppm_file(const char* ppm_file_path) {
         case '5': {
           /* ----- Portable GrayMap, PGM, Binary -----*/
           const unsigned char value_p2;
-          int result_pixel_p2_p5 = fscanf(ppm_file, "%d", &value_p2);
+          int result_pixel_p2_p5 = fscanf(ppm_file, "%s", &value_p2);
 
           if (result_pixel_p2_p5 != 1) {
             printf("P2 Body: Invalid pixel data (must be integers)!\n");
@@ -104,7 +104,7 @@ int read_ppm_file(const char* ppm_file_path) {
           // Apply the pixel value to the RGB pixel values
           set_rgb_color_at(index, value_p2);
         } break;
-        case '3':
+        case '3': {
           /* ----- Portable PixMap, PPM, ASCII -----*/
           int result_pixel_p3 =
               fscanf(ppm_file, "%d %d %d", &ppm_data.Body.pixel_data[index].r,
@@ -115,8 +115,7 @@ int read_ppm_file(const char* ppm_file_path) {
             printf("P3 Body: Invalid pixel data (must be integers)!\n");
             return 1;
           }
-
-          break;
+        } break;
         case '6':
           /* ----- Portable PixMap, PPM, Binary -----*/
           if (fread(&ppm_data.Body.pixel_data[index], sizeof(Pixel), 1,
