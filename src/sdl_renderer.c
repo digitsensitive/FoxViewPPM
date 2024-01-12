@@ -54,6 +54,7 @@ void draw(SDLRenderer *self) {
 }
 
 void terminate_renderer(SDLRenderer *self) {
+  free_pixel_data();
   SDL_DestroyTexture(image_texture);
   SDL_DestroyRenderer(self->renderer);
   SDL_DestroyWindow(self->window);

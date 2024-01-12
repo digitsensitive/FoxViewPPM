@@ -29,4 +29,5 @@ int read_ppm_file(const char* ppm_file_path);
 
 const unsigned int get_width();
 const unsigned int get_height();
+void free_pixel_data();
 Pixel* get_pixel_data();

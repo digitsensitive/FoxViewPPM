@@ -145,5 +145,5 @@ int read_ppm_file(const char* ppm_file_path) {
 
 const unsigned int get_width() { return ppm_data.Header.width; }
 const unsigned int get_height() { return ppm_data.Header.height; }
-
+void free_pixel_data() { free(ppm_data.Body.pixel_data); }
 Pixel* get_pixel_data() { return ppm_data.Body.pixel_data; }
