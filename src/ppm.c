@@ -2,6 +2,11 @@
 
 PPMFile ppm_data;
 
+void set_rgb_color_at(unsigned int index, const unsigned color) {
+  ppm_data.Body.pixel_data[index].r = ppm_data.Body.pixel_data[index].g =
+      ppm_data.Body.pixel_data[index].b = color;
+}
+
 int read_ppm_file(const char* ppm_file_path) {
   FILE* ppm_file;
 
@@ -18,12 +23,8 @@ int read_ppm_file(const char* ppm_file_path) {
   ppm_data.Header.file_type[2] = '\0';  // Null-terminate the string
 
   if (ppm_data.Header.file_type[0] != 'P' ||
-      (ppm_data.Header.file_type[1] != '1' &&
-       ppm_data.Header.file_type[1] != '2' &&
-       ppm_data.Header.file_type[1] != '3' &&
-       ppm_data.Header.file_type[1] != '4' &&
-       ppm_data.Header.file_type[1] != '5' &&
-       ppm_data.Header.file_type[1] != '6')) {
+      !(ppm_data.Header.file_type[1] >= '1' &&
+        ppm_data.Header.file_type[1] <= '6')) {
     printf("Invalid PPM file format!\n");
     fclose(ppm_file);
     return 1;
@@ -66,7 +67,7 @@ int read_ppm_file(const char* ppm_file_path) {
 
   for (int y = 0; y < ppm_data.Header.height; y++) {
     for (int x = 0; x < ppm_data.Header.width; x++) {
-      int index = y * ppm_data.Header.width + x;
+      unsigned int index = y * ppm_data.Header.width + x;
 
       switch (ppm_data.Header.file_type[1]) {
         case '1':
@@ -83,12 +84,10 @@ int read_ppm_file(const char* ppm_file_path) {
           }
 
           // Traditionally "0" refers to white while "1" refers to black.
-          const unsigned char value_rgb = value_p1 == 1 ? 0 : 255;
+          const unsigned char rgb_value = value_p1 == 1 ? 0 : 255;
 
           // Apply the pixel value to the RGB pixel values
-          ppm_data.Body.pixel_data[index].r =
-              ppm_data.Body.pixel_data[index].g =
-                  ppm_data.Body.pixel_data[index].b = value_rgb;
+          set_rgb_color_at(index, rgb_value);
 
           break;
         case '2':
@@ -104,9 +103,7 @@ int read_ppm_file(const char* ppm_file_path) {
           }
 
           // Apply the pixel value to the RGB pixel values
-          ppm_data.Body.pixel_data[index].r =
-              ppm_data.Body.pixel_data[index].g =
-                  ppm_data.Body.pixel_data[index].b = value_p2;
+          set_rgb_color_at(index, value_p2);
 
           break;
         case '3':
