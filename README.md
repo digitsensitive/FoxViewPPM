@@ -4,6 +4,8 @@ PPM Viewer is an Open Source image viewer for PPM, PBM and PGM files, written
 in `C` and `SDL2`. The program parses the image data (header and body) and
 displays the content using the SDL2 library.
 
+<img src="./readme_image.png" alt="PPM Viewer Image" style="width: 100%;"/>
+
 ## Features
 
 - Supports P1-P6 Files
