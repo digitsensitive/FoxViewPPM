@@ -1,6 +1,6 @@
 # FoxViewPPM
 
-FoxViewPPM is an Open Source image viewer for PPM, PBM and PGM files, written
+FoxViewPPM is an image viewer for PPM, PBM and PGM files, written
 in `C` and `SDL2`. The program parses the image data (header and body) and
 displays the content using the SDL2 library.
 
