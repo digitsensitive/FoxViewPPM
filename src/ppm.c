@@ -68,14 +68,16 @@ int read_ppm_file(const char* ppm_file_path) {
   for (int y = 0; y < ppm_data.Header.height; y++) {
     for (int x = 0; x < ppm_data.Header.width; x++) {
       unsigned int index = y * ppm_data.Header.width + x;
+      const unsigned char value_p1;
+      const unsigned char value_p2;
+      int result_pixel_p3;
 
       switch (ppm_data.Header.file_type[1]) {
         case '1':
           /* ----- Portable BitMap, PBM, ASCII -----*/
-        case '4': {
+        case '4':
           /* ----- Portable BitMap, PBM, Binary -----*/
           // Get current pixel value, ASCII "0" or "1"
-          const unsigned char value_p1;
           int result_pixel_p1_p4 = fscanf(ppm_file, "%s", &value_p1);
 
           if (result_pixel_p1_p4 > 1 || result_pixel_p1_p4 < 0) {
@@ -88,12 +90,11 @@ int read_ppm_file(const char* ppm_file_path) {
 
           // Apply the pixel value to the RGB pixel values
           set_rgb_color_at(index, rgb_value);
-        } break;
+          break;
         case '2':
           /* ----- Portable GrayMap, PGM, ASCII -----*/
-        case '5': {
+        case '5':
           /* ----- Portable GrayMap, PGM, Binary -----*/
-          const unsigned char value_p2;
           int result_pixel_p2_p5 = fscanf(ppm_file, "%s", &value_p2);
 
           if (result_pixel_p2_p5 != 1) {
@@ -103,10 +104,10 @@ int read_ppm_file(const char* ppm_file_path) {
 
           // Apply the pixel value to the RGB pixel values
           set_rgb_color_at(index, value_p2);
-        } break;
+          break;
         case '3': {
           /* ----- Portable PixMap, PPM, ASCII -----*/
-          int result_pixel_p3 =
+          result_pixel_p3 =
               fscanf(ppm_file, "%d %d %d", &ppm_data.Body.pixel_data[index].r,
                      &ppm_data.Body.pixel_data[index].g,
                      &ppm_data.Body.pixel_data[index].b);
