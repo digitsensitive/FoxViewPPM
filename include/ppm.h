@@ -14,7 +14,7 @@ typedef struct {
 
 typedef struct {
   struct {
-    char file_type[3];    // "Magic number"(P6 raw format, P3 plain format)
+    char file_type[3];    // "Magic number"
     unsigned int width;   // Image width, ASCII decimal
     unsigned int height;  // Image height, ASCII decimal
     unsigned int maxval;  // Maximum color value (Maxval), ASCII decimal
