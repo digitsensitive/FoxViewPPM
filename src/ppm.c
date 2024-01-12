@@ -78,7 +78,7 @@ int read_ppm_file(const char* ppm_file_path) {
         case '4':
           /* ----- Portable BitMap, PBM, Binary -----*/
           // Get current pixel value, ASCII "0" or "1"
-          int result_pixel_p1_p4 = fscanf(ppm_file, "%s", &value_p1);
+          int result_pixel_p1_p4 = fscanf(ppm_file, "%d", &value_p1);
 
           if (result_pixel_p1_p4 > 1 || result_pixel_p1_p4 < 0) {
             printf("P1 Body: Invalid pixel data (must be integers)!\n");
@@ -95,7 +95,7 @@ int read_ppm_file(const char* ppm_file_path) {
           /* ----- Portable GrayMap, PGM, ASCII -----*/
         case '5':
           /* ----- Portable GrayMap, PGM, Binary -----*/
-          int result_pixel_p2_p5 = fscanf(ppm_file, "%s", &value_p2);
+          int result_pixel_p2_p5 = fscanf(ppm_file, "%d", &value_p2);
 
           if (result_pixel_p2_p5 != 1) {
             printf("P2 Body: Invalid pixel data (must be integers)!\n");
