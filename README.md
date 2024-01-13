@@ -8,18 +8,18 @@ efficient tool for viewing images with a focus on ease of use.
 
 ## Features
 
-1. Cross-Platform Compatibility: FoxViewPPM is designed to work seamlessly
-   across various platforms, including Windows, Linux, and macOS.
-2. Support for PPM, PBM, and PGM Formats: The viewer is capable of parsing and
+1. **Cross-Platform Compatibility**: FoxViewPPM is designed to work seamlessly
+   across various platforms, including Windows, macOS, and soon Linux (coming).
+2. **Support for PPM, PBM, and PGM Formats**: The viewer is capable of parsing and
    displaying images in the widely used PPM (Portable Pixel Map),
    PBM (Portable Bitmap), and PGM (Portable Graymap) formats.
-3. Efficient Image Parsing: FoxViewPPM efficiently parses both the header and
+3. **Efficient Image Parsing**: FoxViewPPM efficiently parses both the header and
    body of image files, ensuring quick and accurate rendering of images.
-4. Command Line Support: Run FoxViewPPM from the command line, making it
+4. **Command Line Support**: Run FoxViewPPM from the command line, making it
    convenient for integration into scripts or other workflows.
-5. Lightweight and Fast: With a minimalistic design, FoxViewPPM prioritizes
+5. **Lightweight and Fast**: With a minimalistic design, FoxViewPPM prioritizes
    speed and efficiency, providing a fast and responsive image viewing experience.
-6. Open Source: FoxViewPPM is an open-source project, encouraging collaboration
+6. **Open Source**: FoxViewPPM is an open-source project, encouraging collaboration
    and contributions from the community. Feel free to fork the repository,
    report issues, or submit pull requests.
 
