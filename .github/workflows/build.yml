@@ -80,5 +80,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: "FoxViewPPM-macos"
-          path: build/FoxViewPPM
-# Optionally, you may want to add a matrix entry for Linux builds as well.
+          path: build/FoxViewPPM.app
