@@ -7,6 +7,8 @@ FoxViewPPM is a lightweight image viewer written in `C` and `SDL2`, specifically
 designed for PPM, PBM, and PGM file formats. It aims to provide a simple and
 efficient tool for viewing images with a focus on ease of use.
 
+This project was created for educational purposes.
+
 <img src="./readme_image.png" alt="PPM Viewer Image" style="width: 100%;"/>
 
 ## Features
