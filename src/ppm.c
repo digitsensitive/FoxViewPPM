@@ -14,7 +14,7 @@ int read_ppm_file(const char* ppm_file_path) {
 
   if (ppm_file == NULL) {
     printf("Memory allocation for FILE pointer failed!\n");
-    return 1;
+    return 0;
   }
 
   /* ------------------------- PPM Header ------------------------- */
@@ -27,7 +27,7 @@ int read_ppm_file(const char* ppm_file_path) {
         ppm_data.Header.file_type[1] <= '6')) {
     printf("Invalid PPM file format!\n");
     fclose(ppm_file);
-    return 1;
+    return 0;
   }
 
   // Width and Height
@@ -36,7 +36,8 @@ int read_ppm_file(const char* ppm_file_path) {
 
   if (result_image_size != 2) {
     printf("Invalid width and/or height (must be integers)!\n");
-    return 1;
+    fclose(ppm_file);
+    return 0;
   }
 
   // Maximum color value
@@ -51,7 +52,8 @@ int read_ppm_file(const char* ppm_file_path) {
     if (result_maxval != 1 || ppm_data.Header.maxval >= 65536 ||
         ppm_data.Header.maxval <= 0) {
       printf("Invalid maxval value (must be integer and > 0 and < 65536)!\n");
-      return 1;
+      fclose(ppm_file);
+      return 0;
     }
   }
 
@@ -62,7 +64,8 @@ int read_ppm_file(const char* ppm_file_path) {
 
   if (ppm_data.Body.pixel_data == NULL) {
     printf("Memory allocation for pixel data failed!\n");
-    return 1;
+    fclose(ppm_file);
+    return 0;
   }
 
   for (int y = 0; y < ppm_data.Header.height; y++) {
@@ -80,7 +83,8 @@ int read_ppm_file(const char* ppm_file_path) {
 
           if (result_pixel_p1_p4 > 1 || result_pixel_p1_p4 < 0) {
             printf("P1 Body: Invalid pixel data (must be integers)!\n");
-            return 1;
+            fclose(ppm_file);
+            return 0;
           }
 
           // Traditionally "0" refers to white while "1" refers to black.
@@ -98,7 +102,8 @@ int read_ppm_file(const char* ppm_file_path) {
 
           if (result_pixel_p2_p5 != 1) {
             printf("P2 Body: Invalid pixel data (must be integers)!\n");
-            return 1;
+            fclose(ppm_file);
+            return 0;
           }
 
           // Apply the pixel value to the RGB pixel values
@@ -113,7 +118,8 @@ int read_ppm_file(const char* ppm_file_path) {
 
           if (result_pixel_p3 != 3) {
             printf("P3 Body: Invalid pixel data (must be integers)!\n");
-            return 1;
+            fclose(ppm_file);
+            return 0;
           }
         } break;
         case '6':
@@ -121,7 +127,8 @@ int read_ppm_file(const char* ppm_file_path) {
           if (fread(&ppm_data.Body.pixel_data[index], sizeof(Pixel), 1,
                     ppm_file) != 1) {
             printf("P6 Body: Error reading pixel data!\n");
-            return 1;
+            fclose(ppm_file);
+            return 0;
           }
 
           break;
@@ -134,7 +141,7 @@ int read_ppm_file(const char* ppm_file_path) {
 
   fclose(ppm_file);
 
-  return 0;
+  return 1;
 }
 
 const unsigned int get_width() { return ppm_data.Header.width; }
