@@ -44,7 +44,7 @@ elseif(APPLE)
     set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.digitsensitive.foxviewppm")
     set(MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.plist.in")
     
-    add_executable(${PROJECT_NAME} MACOSX_BUNDLE
+    add_executable(${PROJECT_NAME}
         src/main.c
         src/ppm.c
         src/sdl_engine.c
@@ -53,6 +53,15 @@ elseif(APPLE)
     # Set icon file for the bundle
     set_source_files_properties(${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
     target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.icns)
+
+    # Set macOS bundle properties
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_INFO_PLIST "${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.plist.in"
+        MACOSX_BUNDLE_ICON_FILE "${PROJECT_SOURCE_DIR}/build/macosx/FoxViewPPM.icns"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "com.digitsensitive.foxviewppm"
+    )
+    
 else()
      add_executable(${PROJECT_NAME}
         src/main.c
