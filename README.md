@@ -4,10 +4,8 @@
 ![GitHub Release](https://img.shields.io/github/v/release/digitsensitive/FoxViewPPM)
 
 FoxViewPPM is a lightweight image viewer written in `C` and `SDL2`, specifically
-designed for PPM, PBM, and PGM file formats. It aims to provide a simple and
-efficient tool for viewing images with a focus on ease of use.
-
-This project was created for educational purposes.
+designed for PPM, PBM, and PGM file formats. This project was created for
+educational purposes.
 
 <img src="./readme_image.png" alt="PPM Viewer Image" style="width: 100%;"/>
 
@@ -18,13 +16,9 @@ This project was created for educational purposes.
 2. **Support for PPM, PBM, and PGM Formats**: The viewer is capable of parsing and
    displaying images in the widely used PPM (Portable Pixel Map),
    PBM (Portable Bitmap), and PGM (Portable Graymap) formats.
-3. **Efficient Image Parsing**: FoxViewPPM efficiently parses both the header and
-   body of image files, ensuring quick and accurate rendering of images.
-4. **Command Line Support**: Run FoxViewPPM from the command line, making it
+3. **Command Line Support**: Run FoxViewPPM from the command line, making it
    convenient for integration into scripts or other workflows.
-5. **Lightweight and Fast**: With a minimalistic design, FoxViewPPM prioritizes
-   speed and efficiency, providing a fast and responsive image viewing experience.
-6. **Open Source**: FoxViewPPM is an open-source project, encouraging collaboration
+4. **Open Source**: FoxViewPPM is an open-source project, encouraging collaboration
    and contributions from the community. Feel free to fork the repository,
    report issues, or submit pull requests.
 

@@ -16,10 +16,9 @@ int main(int argc, char* argv[]) {
     return -1;
   }
 
-  int result = initialize_engine(argv[1]);
-
-  if (result != 0) {
-    return result;
+  // Init Engine
+  if (initialize_engine(argv[1]) != 0) {
+    return -1;
   }
 
   int done = 0;
