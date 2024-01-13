@@ -1,5 +1,8 @@
 # FoxViewPPM
 
+![GitHub repo size](https://img.shields.io/github/repo-size/digitsensitive/FoxViewPPM)
+![GitHub Release](https://img.shields.io/github/v/release/digitsensitive/FoxViewPPM)
+
 FoxViewPPM is a lightweight image viewer written in `C` and `SDL2`, specifically
 designed for PPM, PBM, and PGM file formats. It aims to provide a simple and
 efficient tool for viewing images with a focus on ease of use.
