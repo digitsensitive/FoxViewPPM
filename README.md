@@ -12,7 +12,7 @@ educational purposes.
 ## Features
 
 1. **Cross-Platform Compatibility**: FoxViewPPM is designed to work seamlessly
-   across various platforms, including Windows, macOS, and Linux (coming).
+   across various platforms, including Windows, macOS, and Linux.
 2. **Support for PPM, PBM, and PGM Formats**: The viewer is capable of parsing and
    displaying images in the widely used PPM (Portable Pixel Map),
    PBM (Portable Bitmap), and PGM (Portable Graymap) formats.
