@@ -5,7 +5,7 @@
 
 typedef struct {
   char is_running;
-  SDLRenderer renderer;
+  CustomRenderer renderer;
   SDL_Event event;
 } SDLEngine;
 

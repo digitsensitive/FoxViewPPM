@@ -4,23 +4,19 @@
 #include <stdio.h>
 
 #include "ppm.h"
-// SDLRenderer is a project-specific alias of the SDL_Renderer
+
 typedef struct {
-  SDL_Window *window;
   SDL_Renderer *renderer;
-} SDLRenderer;
+  SDL_Window *window;
+  const char *window_title;
+  int screen_width;
+  int screen_height;
+  Uint32 render_flags;
+} CustomRenderer;
 
-// WindowSettings holds relevant configurations for the SDL_Window
-typedef struct {
-  const char *title;
-  int width;
-  int height;
-  Uint32 flags;
-} WindowSettings;
-
-int initialize_renderer(SDLRenderer *self, const char *window_title,
+int initialize_renderer(CustomRenderer *renderer, const char *window_title,
                         const int window_width, const int window_height,
                         Uint32 flags);
 
-void draw(SDLRenderer *self);
-void terminate_renderer(SDLRenderer *self);
+void draw(CustomRenderer *renderer);
+void terminate_renderer(CustomRenderer *renderer);
