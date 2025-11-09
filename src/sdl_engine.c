@@ -28,7 +28,7 @@ void process_input(SDLEngine* engine) {
         engine->is_running = 0;
         break;
       case SDL_EVENT_KEY_DOWN:
-        if (engine->event.key.keysym.sym == SDLK_ESCAPE) {
+        if (engine->event.key.key == SDLK_ESCAPE) {
           engine->is_running = 0;
         }
         break;

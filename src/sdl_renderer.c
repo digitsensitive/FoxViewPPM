@@ -10,7 +10,7 @@ int initialize_renderer(CustomRenderer *renderer, const char *window_title,
   renderer->screen_height = window_height;
   renderer->render_flags = flags;
 
-  if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+  if (!SDL_Init(SDL_INIT_VIDEO)) {
     // In the case that the SDL failed to initialize ...
     printf("SDL_Init() failed: %s\n", SDL_GetError());
     return 1;
@@ -27,8 +27,7 @@ int initialize_renderer(CustomRenderer *renderer, const char *window_title,
   }
 
   renderer->renderer =
-      SDL_CreateRenderer(renderer->window, 0,
-                         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+      SDL_CreateRenderer(renderer->window, 0);
 
   if (renderer->renderer == NULL) {
     // In the case that the renderer could not be made...
@@ -38,8 +37,8 @@ int initialize_renderer(CustomRenderer *renderer, const char *window_title,
 
   // Create an SDL surface from pixel data
   SDL_Surface *pixel_surface = SDL_CreateSurfaceFrom(
-      get_pixel_data(), renderer->screen_width, renderer->screen_height,
-      get_width() * sizeof(Pixel), SDL_PIXELFORMAT_RGB24);
+       renderer->screen_width, renderer->screen_height,SDL_PIXELFORMAT_RGB24,
+       get_pixel_data(),get_width() * sizeof(Pixel));
 
   // Create a texture from the surface
   image_texture =

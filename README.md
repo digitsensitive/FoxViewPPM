@@ -3,7 +3,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/digitsensitive/FoxViewPPM)
 ![GitHub Release](https://img.shields.io/github/v/release/digitsensitive/FoxViewPPM)
 
-FoxViewPPM is a lightweight image viewer written in `C` and `SDL2`, specifically
+FoxViewPPM is a lightweight image viewer written in `C` and `SDL3`, specifically
 designed for PPM, PBM, and PGM file formats. This project was created for
 educational purposes.
 
@@ -24,16 +24,23 @@ educational purposes.
 
 ## How to build
 
-Initialize submodules:
+Checks out submodules at the specific commits pinned by the repo:
 
 ```bash
 git submodule update --init --recursive
+```
+
+Update submodules to the latest commits on their remote branches:
+
+```bash
+git submodule update --recursive --remote
 ```
 
 Build Release:
 
 ```bash
 cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build . --config Release
 ```
 
